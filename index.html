@@ -15,14 +15,15 @@
             height: 50px;
             cursor: pointer;
         }
-    </style>
+        </style>
 </head>
 <body style="margin: 0; overflow: hidden;">
+    <!-- <video id="video1" preload="auto" autoplay loop muted playsinline src="./video/test4.webm"></video> -->
     <a-scene
     vr-mode-ui="enabled: false;"
     renderer="logarithmicDepthBuffer: true;"
     embedded arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;'>        <a-assets>
-            <video id="video1" autoplay loop muted playsinline src="./video/test4.webm"></video>
+            <video id="video1" preload="auto" autoplay loop muted playsinline src="./video/test2.MOV"></video>
             <img id="muteImage" src="./no-sound.png">
             <img id="unmuteImage" src="./sound.png">
         </a-assets>
