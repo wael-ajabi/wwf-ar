@@ -25,15 +25,13 @@
     vr-mode-ui="enabled: false;"
     renderer="logarithmicDepthBuffer: true;"
     embedded arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;'>        <a-assets>
-            <video id="video1" preload="true"  loop muted playsinline 
+            <video id="video1" preload="auto"  loop muted playsinline controls
             ></video>
             <img id="muteImage" src="./no-sound.png">
             <img id="unmuteImage" src="./sound.png">
         </a-assets>
 
-        <a-nft
-        type='nft' url='./test'
-        smooth='true' smoothCount='10' smoothTolerance='0.01' smoothThreshold='5'>    
+  
     <a-entity
     position="200.884 40 -400"
         material="shader: transparent-video; src: #video1"
@@ -43,7 +41,6 @@
                   height: 350"
         position="0 1 -2">
       </a-entity>
-</a-nft>
 
         <a-entity camera></a-entity>
     </a-scene>
