@@ -62,18 +62,20 @@
 
 const player = document.getElementById('video1');
 player.src = supportsHEVCAlpha() ? './video/output.mov' : './video/output.webm';
-alert(player.src)
+
         // Use querySelector to select the a-nft element
         const nft = document.querySelector('a-nft');
         const video = document.getElementById('video1');
     
         // Function to handle marker found event
         nft.addEventListener('markerFound', function() {
+            alert("playing")
             video.play();
         });
-    
+        
         // Function to handle marker lost event
         nft.addEventListener('markerLost', function() {
+            alert("pausing")
             video.pause();
         });
     
