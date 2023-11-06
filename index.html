@@ -26,7 +26,7 @@
     renderer="logarithmicDepthBuffer: true;"
     embedded arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;'>        <a-assets>
             <video id="video1" preload="true"  loop muted playsinline 
-            src="./video/Alpha_VP.webm" type="video/webm" ></video>
+            ></video>
             <img id="muteImage" src="./no-sound.png">
             <img id="unmuteImage" src="./sound.png">
         </a-assets>
@@ -51,6 +51,17 @@
     <img id="soundImage" src="./no-sound.png" alt="Toggle Sound">
 
     <script>
+        function supportsHEVCAlpha() {
+  const navigator = window.navigator;
+  const ua = navigator.userAgent.toLowerCase()
+  const hasMediaCapabilities = !!(navigator.mediaCapabilities && navigator.mediaCapabilities.decodingInfo)
+  const isSafari = ((ua.indexOf('safari') != -1) && (!(ua.indexOf('chrome')!= -1) && (ua.indexOf('version/')!= -1)))
+  return isSafari && hasMediaCapabilities
+}
+
+
+const player = document.getElementById('video1');
+player.src = supportsHEVCAlpha() ? 'output.mov' : 'output.webm';
         // Use querySelector to select the a-nft element
         const nft = document.querySelector('a-nft');
         const video = document.getElementById('video1');
