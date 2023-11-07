@@ -1,43 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Demo AR</title>
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
-    <script
-        src="https://unpkg.com/aframe-transparent-video-shader@1.0.6/dist/aframe-transparent-video-shader.umd.js"></script>
+    <script src="https://unpkg.com/aframe-transparent-video-shader@1.0.6/dist/aframe-transparent-video-shader.umd.js"></script>
 </head>
-<style>
-    #soundImage {
-        position: absolute;
-        bottom: 20px;
-        left: 20px;
-        z-index: 100;
-        width: 50px;
-        height: 50px;
-        cursor: pointer;
-    }
-</style>
+   <style>
+        #soundImage {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            z-index: 100;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+        }
+        </style>
 </head>
-
 <body style="margin: 0; overflow: hidden;">
     <!-- <video id="video1" preload="auto" autoplay loop muted playsinline src="./video/test4.webm"></video> -->
-    <a-scene vr-mode-ui="enabled: false;" renderer="logarithmicDepthBuffer: true;" embedded
-        arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;'> <a-assets>
-            <!-- <video id="video1" preload="auto" loop muted playsinline controls></video> -->
+    <a-scene
+    vr-mode-ui="enabled: false;"
+    renderer="logarithmicDepthBuffer: true;"
+    embedded arjs='trackingMethod: best; sourceType: webcam; debugUIEnabled: false;'>        <a-assets>
+            <video id="video1" preload="true"  loop muted playsinline 
+            src="./video/Alpha_VP.webm" type="video/webm" ></video>
             <img id="muteImage" src="./no-sound.png">
             <img id="unmuteImage" src="./sound.png">
         </a-assets>
 
-        <a-nft type='nft' url='./test' smooth='true' smoothCount='10' smoothTolerance='0.01' smoothThreshold='5'>
-            <!-- <a-entity position="200.884 40 -400" material="shader: transparent-video; src: #video1" rotation="-90 0 0"
-                geometry="primitive: plane;
+        <a-nft
+        type='nft' url='./test'
+        smooth='true' smoothCount='10' smoothTolerance='0.01' smoothThreshold='5'>    
+    <a-entity
+    position="200.884 40 -400"
+        material="shader: transparent-video; src: #video1"
+        rotation="-90 0 0"
+        geometry="primitive: plane;
                   width: 550;
-                  height: 350" position="0 1 -2">
-            </a-entity> -->
-        </a-nft>
+                  height: 350"
+        position="0 1 -2">
+      </a-entity>
+</a-nft>
 
         <a-entity camera></a-entity>
     </a-scene>
@@ -45,47 +51,26 @@
     <img id="soundImage" src="./no-sound.png" alt="Toggle Sound">
 
     <script>
-        function supportsHEVCAlpha() {
-            const navigator = window.navigator;
-            const ua = navigator.userAgent.toLowerCase()
-            const hasMediaCapabilities = !!(navigator.mediaCapabilities && navigator.mediaCapabilities.decodingInfo)
-            const isSafari = ((ua.indexOf('safari') != -1) && (!(ua.indexOf('chrome') != -1) && (ua.indexOf('version/') != -1)))
-            return isSafari && hasMediaCapabilities
-        }
-
-
-
         // Use querySelector to select the a-nft element
         const nft = document.querySelector('a-nft');
-        // const video = document.getElementById('video1');
-
-        // video.src = supportsHEVCAlpha() ? './video/output.mov' : './video/output.webm';
-
+        const video = document.getElementById('video1');
+    
         // Function to handle marker found event
-        nft.addEventListener('markerFound', function () {
-            try {
-                alert("markerFound")
-                // video?.play();
-                
-            } catch (error) {
-                alert(error)
-                
-            }
+        nft.addEventListener('markerFound', function() {
+            video.play();
         });
-
+    
         // Function to handle marker lost event
-        nft.addEventListener('markerLost', function () {
-            alert("pausing")
-            // video?.pause();
+        nft.addEventListener('markerLost', function() {
+            video.pause();
         });
-
+    
         // Function to toggle sound and change image
-        // document.getElementById("soundImage").addEventListener("click", function () {
-        //     video.muted = !video.muted;
-        //     this.src = video.muted ? "./no-sound.png" : "./sound.png";
-        // });
+        document.getElementById("soundImage").addEventListener("click", function() {
+            video.muted = !video.muted;
+            this.src = video.muted ? "./no-sound.png" : "./sound.png";
+        });
     </script>
-
+    
 </body>
-
 </html>
